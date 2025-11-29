@@ -1,0 +1,54 @@
+# Default configuration for flow-based generative models
+
+# Model configuration
+model:
+  name: "realnvp"  # Options: "realnvp", "glow"
+  in_channels: 3
+  num_coupling_layers: 8
+  mid_channels: 512
+  image_size: 32
+
+# Training configuration
+training:
+  batch_size: 64
+  num_epochs: 100
+  learning_rate: 1e-3
+  weight_decay: 1e-5
+  gradient_clip_norm: 1.0
+  log_interval: 100
+  save_interval: 10
+  eval_interval: 5
+
+# Data configuration
+data:
+  dataset: "cifar10"  # Options: "cifar10", "mnist", "fashion_mnist"
+  data_dir: "./data"
+  num_workers: 4
+  image_size: 32
+
+# Evaluation configuration
+evaluation:
+  num_samples: 1000
+  compute_fid: true
+  compute_is: true
+  compute_bits_per_dim: true
+
+# Logging configuration
+logging:
+  log_dir: "./logs"
+  use_wandb: false
+  wandb_project: "flow-based-models"
+  use_tensorboard: true
+
+# Device configuration
+device:
+  use_cuda: true
+  use_mps: true  # For Apple Silicon
+  deterministic: true
+  seed: 42
+
+# Paths
+paths:
+  checkpoint_dir: "./checkpoints"
+  sample_dir: "./samples"
+  config_dir: "./configs"
